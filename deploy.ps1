@@ -17,7 +17,7 @@ Set-ItemProperty -Path "HKCU:\Control Panel\International" -Name sShortTime -Val
 Set-ItemProperty -Path "HKCU:\Control Panel\International" -Name sTimeFormat -Value "HH:mm:ss"
 
 # SSH keygen
-sshkeygen -t ed25519
+ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\id_ed25519" -N "" -C "$env:USERNAME@$(hostname)"
 
 $excludedPath = "C:\Tools"
 if (-not (Test-Path $excludedPath)) {

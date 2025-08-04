@@ -14,7 +14,8 @@ if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
 
 Write-Host "Installing Boxstarter..."
 if (-not (Get-Command Install-BoxstarterPackage -ErrorAction SilentlyContinue)) {
-    iex ((New-Object System.Net.WebClient).DownloadString('https://boxstarter.org/bootstrapper.ps1'))
+    choco install boxstarter
+    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 } else {
     Write-Host "Boxstarter already installed."
 }
@@ -31,5 +32,6 @@ if (-not (Test-Path $mainScriptPath)) {
 }
 
 Write-Host "Running main deployment script with Boxstarter..."
+Start-BoxstarterShell
 Install-BoxstarterPackage -PackageName $mainScriptPath
 
