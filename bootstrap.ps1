@@ -32,6 +32,4 @@ if (-not (Test-Path $mainScriptPath)) {
 }
 
 Write-Host "Running main deployment script with Boxstarter..."
-Start-BoxstarterShell
 Install-BoxstarterPackage -PackageName $mainScriptPath
-
